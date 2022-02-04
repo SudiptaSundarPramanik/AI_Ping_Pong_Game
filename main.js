@@ -1,3 +1,9 @@
+rightWrist="";
+rightWristX="";
+rightWristY="";
+rightWrist_score=0;
+value=0;
+
 
 /*created by prashant shukla */
 
@@ -35,7 +41,21 @@ function modelLoaded(){
   console.log("Model is loaded🐵");
 }
 
+function gotPoses(results){
+  if(results.length>0){
+    console.log(results);
+    rightWristX=results[0].pose.rightWrist.x;
+    rightWristY=results[0].pose.rightWrist.y;
+    rightWrist_score=results[0].pose.keypoints[10].score;
+  }
+}
+
 function draw(){
+  if(rightWrist>0.2){
+    fill("#5be3e3");
+    stroke("#9f1eb3");
+    circle(0,0,20);
+  }
 
  background(0); 
  image(video,0,0,700,600);
